@@ -33,7 +33,6 @@ var breweryModule = (function() {
 
 		// "http://api.brewerydb.com/v2/locations?key=5247aa4653fc6c9452275d2055711946&locality=atlanta"
 
-
 		var queryString = '?';
 		queryString += "_ep=/locations";
 		// queryString += '&key=' + API_KEY;
@@ -42,44 +41,70 @@ var breweryModule = (function() {
 
 		fetch(BASE_URL + queryString, fetching)
 			.then(response => response.json()) 
-			.then(breweryResults => addLocationsToMap(breweryResults))	
+			.then(breweryResults => addLocationsToMap(breweryResults))		
 	}
 
 
 	function addLocationsToMap(breweryResults) {
 		console.log('got breweries', breweryResults);
 		
-		var allBreweries = breweryResults.data;
+		var allBreweries = breweryResults.data; 
 
-		// clear out old results
-			var resultsUL = document.querySelector('.results');
-			resultsUL.innerHTML = '';
+		GoogleMapModule.resetMarkers(); //reset markers
 
-		for (var i = allBreweries.length - 1; i >= 0; i--) {
-			var breweryName = allBreweries[i];
+		var resultsUL = document.querySelector('.results');
 
-			// create variables to add to map
-			var markerData = {};
+		//clear results each time
+		resultsUL.innerHTML = '';
 
-			markerData.coordinates = {
-				lat: parseFloat(breweryName.latitude), // array of data
-				lng: parseFloat(breweryName.longitude) // array of data
+		// console.log("allBreweries", allBreweries)
+
+		// if there are no breweries say no breweries found
+		if (!allBreweries){
+			document.querySelector('.results').innerHTML = "No Breweries found";
+		
+		} else { // allBreweries was defined (as an array)
+
+			// go through brewery array
+			for (var i = allBreweries.length - 1; i >= 0; i--) {
+				var brewery = allBreweries[i];
+
+				var li = document.createElement('li');
+
+				// list items in html = to names of the breweries
+				li.innerHTML = brewery.brewery.name;
+				// put names in dom in results ul 
+				resultsUL.appendChild(li);
+
+				// console.log(brewery.brewery.images.icon)
+
+				// create variables to add to map
+				var markerData = {};
+
+				markerData.coordinates = {
+					lat: parseFloat(brewery.latitude), // array of data
+					lng: parseFloat(brewery.longitude) // array of data
+				}
+
+				var breweryDes = brewery.brewery.description;
+				var breweryWeb = brewery.brewery.website;
+/* help --> */  var breweryImg = brewery.brewery.images;
+
+				// if brewery description or website isnt there, say nothing about it
+/* help --> */	if (breweryDes || breweryWeb || breweryImg){
+					markerData.content = `<div>${brewery.brewery.name} ${breweryImg}<hr/>${breweryDes} ${breweryWeb}</div>`; 
+					// put an image/icon 
+/* help --> */	} else if (breweryImg.length >= 0) {
+					markerData.content = `<div>${brewery.brewery.name}<hr/>${breweryDes} ${breweryWeb}</div>`; 
+				} else {
+					markerData.content = `<div>${brewery.brewery.name}</div>`; 
+				}
+
+				GoogleMapModule.createMarker(markerData);
+
 			}
-
-			var breweryDes = breweryName.brewery.description;
-			var breweryWeb = breweryName.brewery.website;
-
-			// if brewery description or website isnt there, say nothing about it
-			if (breweryDes || breweryWeb){
-				markerData.content = `<div>${breweryName.name}<hr/>${breweryDes} ${breweryWeb}</div>`; 
-			} else {
-				markerData.content = `<div>${breweryName.name}</div>`; 
-			}
-
-			GoogleMapModule.createMarker(markerData);
-
+		}
 	}
-};
 
 
 
