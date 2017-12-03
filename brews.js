@@ -5,7 +5,7 @@
 var breweryModule = (function() {
 	var shared = {};
 
-	var BASE_URL = 'http://localhost:9000'; //'http://api.brewerydb.com/v2';
+	var BASE_URL = 'http://localhost:9000/brewerydb-proxy/'; //'http://api.brewerydb.com/v2';
 	var API_KEY = '5247aa4653fc6c9452275d2055711946';
 	var coordinates = null;
 
@@ -88,14 +88,12 @@ var breweryModule = (function() {
 
 				var breweryDes = brewery.brewery.description;
 				var breweryWeb = brewery.brewery.website;
-/* help --> */  var breweryImg = brewery.brewery.images;
+				var breweryImg = brewery.brewery.images;
 
 				// if brewery description or website isnt there, say nothing about it
-/* help --> */	if (breweryDes || breweryWeb || breweryImg){
+				if (breweryDes || breweryWeb || breweryImg){
 					markerData.content = `<div>${brewery.brewery.name} ${breweryImg}<hr/>${breweryDes} ${breweryWeb}</div>`; 
 					// put an image/icon 
-/* help --> */	} else if (breweryImg.length >= 0) {
-					markerData.content = `<div>${brewery.brewery.name}<hr/>${breweryDes} ${breweryWeb}</div>`; 
 				} else {
 					markerData.content = `<div>${brewery.brewery.name}</div>`; 
 				}
