@@ -12,7 +12,12 @@ var breweryModule = (function() {
 	function setupListeners() {
 		var btn = document.querySelector('#btn');
 		btn.addEventListener('click', searchBreweries);
+
+		// var btn2 = document.querySelector('#btn2');
+		// btn2.addEventListener('click', searchBeers);
 	}
+
+	// search breweries
 
 	function searchBreweries(evt) {
 		evt.preventDefault();
@@ -44,6 +49,7 @@ var breweryModule = (function() {
 			.then(breweryResults => addLocationsToMap(breweryResults))		
 	}
 
+	// add breweries to the map
 
 	function addLocationsToMap(breweryResults) {
 		console.log('got breweries', breweryResults);
@@ -91,11 +97,15 @@ var breweryModule = (function() {
 				var breweryImg = brewery.brewery.images;
 
 				// if brewery description or website isnt there, say nothing about it
-				if (breweryDes || breweryWeb || breweryImg){
-					markerData.content = `<div>${brewery.brewery.name} ${breweryImg}<hr/>${breweryDes} ${breweryWeb}</div>`; 
-					// put an image/icon 
+				if (breweryDes && breweryWeb && breweryImg){
+					   markerData.content = 
+					   `<div>${brewery.brewery.name} 
+					   <img src="${breweryImg.icon}"> 
+					   <hr/>${breweryDes} 
+					   <a href="${breweryWeb}"</a> </div>`; 
+					
 				} else {
-					markerData.content = `<div>${brewery.brewery.name}</div>`; 
+					markerData.content = `<div>${brewery.brewery.name} </div>` ; 
 				}
 
 				GoogleMapModule.createMarker(markerData);
@@ -103,6 +113,17 @@ var breweryModule = (function() {
 			}
 		}
 	}
+
+
+
+	// search for beers
+
+	// function searchBeers(evt) {
+	// 	evt.preventDefault();
+	// 	console.log('searching for beer...');
+
+			
+	// }
 
 
 

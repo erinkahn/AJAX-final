@@ -1,7 +1,9 @@
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
+
 #map {
   height: 100%;
+  width: 100%;
 }
 
 /* Optional: Makes the sample page fill the window. */
@@ -17,9 +19,9 @@ strong {
 }
 
 h1{
-  margin-top: 10px;
+  margin: 20px 0;
   text-align: center;
-  font-size: 1.4em;
+  font-size: 1.3em;
 }
 
 #search {
@@ -28,11 +30,11 @@ h1{
   position: absolute;
   top: 0px;
   left: 0px;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.6);
   height: 93.8%;
-  width: 220px;
+  width: 200px;
   padding: 20px;
-  border: 1px solid #999;
+  border: 1px solid orange;
 
 }
 
@@ -45,7 +47,11 @@ h1{
   width: 100%;
   height: 30px;
   font-size: 1em;
-  margin-bottom: 30px;
+  margin: 30px 0;
+}
+
+select[id="states"]{
+  border-color: orange;
 }
 
 #btn{
@@ -54,6 +60,7 @@ h1{
   padding: 20px;
   font-size: 1em;
   border-radius: 10px;
+  border-color: orange;
 }
 
 #btn:hover{
@@ -67,6 +74,68 @@ ul{
 li{
   padding-bottom: 12px;
   font-size: 0.8em;
-  margin-right: 30px;
+  margin-left: -20px;
 }
+
+/* only mobile and tablet */
+@media screen and (max-width: 470px) {
+
+
+  body{
+    height: 400px;
+  }
+
+  #map{
+    border-top: 2px solid orange;
+    margin-top: 500px;
+    height: 400px;
+  }
+
+  #btn{
+    margin-bottom: 20px;
+  }
+
+  #search{
+    width: 85.5vw;
+    height: 450px;
+    overflow-x: hidden;
+    border: none;
+  }
+
+  h1{
+    font-size: 1.5em;
+    margin: 15px 20px 0 20px;
+  }
+
+  #search img{
+    height: 23%;
+    margin: 0 auto;
+  }
+
+
+  li{
+    color: orange;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

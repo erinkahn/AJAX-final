@@ -75,7 +75,7 @@ var GoogleMapModule = (function() {
 
 	  map = new google.maps.Map(document.getElementById('map'), {
 	    center: startingPoint,
-	    zoom: 4,
+	    zoom: 3,
 	    mapTypeControl: false,
 	  });
 
