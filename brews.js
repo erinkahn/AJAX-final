@@ -12,9 +12,6 @@ var breweryModule = (function() {
 	function setupListeners() {
 		var btn = document.querySelector('#btn');
 		btn.addEventListener('click', searchBreweries);
-
-		// var btn2 = document.querySelector('#btn2');
-		// btn2.addEventListener('click', searchBeers);
 	}
 
 	// search breweries
@@ -40,7 +37,6 @@ var breweryModule = (function() {
 
 		var queryString = '?';
 		queryString += "_ep=/locations";
-		// queryString += '&key=' + API_KEY;
 		queryString += '&region=' + stateSelection;
 		queryString += '&countryIsoCode=US'; //markers show only the US
 		queryString += '&order=breweryName'; // list results in order of brewery name

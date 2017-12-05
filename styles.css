@@ -25,7 +25,10 @@ strong {
 h1{
   margin: 20px 0;
   text-align: center;
-  font-size: 1.3em;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  line-height: 1.3em;
+  color: black;
 }
 
 #search {
@@ -35,6 +38,10 @@ h1{
   top: 0px;
   left: 0px;
   background-color: orange;
+  background-image: url("bubbles.jpg");
+  background-blend-mode: soft-light;
+  background-size: cover;
+  background-repeat: no-repeat;
   height: 93.8%;
   width: 200px;
   padding: 20px;
@@ -68,19 +75,24 @@ select[id="states"]{
 }
 
 #btn:hover{
-  background: #7dcdcd;
+  background: orange;
 }
 
 ul{
    overflow-y: scroll;
+   padding-left: 20px;
 }
 
 li{
   padding-bottom: 12px;
   font-size: 0.8em;
   margin-left: -20px;
-  padding-right: 6px;
-  color: white;
+  padding: 6px;
+  color: black;
+
+  font-weight: bold;
+   background-color: rgba(225, 225, 225, 0.5);
+  
 }
 
 
@@ -118,7 +130,7 @@ li{
   background-color: orange;
   padding: 17px;
   letter-spacing: .09em;
-  font-size: 1.3em;
+  font-size: 1em;
   white-space: nowrap;
 }
 
@@ -133,7 +145,7 @@ li{
 
   #info-window h1{
     padding: 10px 73px 10px 43px;
-    font-size: 1em;
+    font-size: 0.8em;
     text-align: left;
     margin-left: -30px;
   }
@@ -154,13 +166,10 @@ li{
   }
 
   #map{
-    border-top: 5px solid orange;
-    border-left: 5px solid orange;
-    border-right: 5px solid orange;
-    border-bottom: 5px solid orange;
-    margin-top: 500px;
+    border: none;
+    margin-top: 490px;
     height: 400px;
-    width: 97%;
+    width: 100%;
   }
 
   #btn{
@@ -182,6 +191,10 @@ li{
   #search img{
     height: 23%;
     margin: 0 auto;
+  }
+
+  li{
+    font-size: 1em;
   }
 
 }
