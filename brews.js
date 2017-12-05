@@ -103,12 +103,12 @@ var breweryModule = (function() {
 				if (breweryDes && breweryWeb && breweryImg){
 					   markerData.content = 
 					   `<div id="info-window">
-					   <img id="icon" src="${breweryImg.icon}"> 
 					   <h1>${brewery.brewery.name}</h1> 
-					   <hr/>
-					   ${breweryDes}
-					   <br/>
-					   <a href="${breweryWeb}" target="_blank">Visit Website</a>
+					   <div id="flexStuff">
+					   <span id="spanDes">${breweryDes}					   
+					   <a href="${breweryWeb}"target="_blank">Visit Website</a></span>
+					   <img id="icon" src="${breweryImg.icon}"> 
+					   </div>
 					   </div>`; 
 
 					
