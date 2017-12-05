@@ -77,6 +77,36 @@ li{
   margin-left: -20px;
 }
 
+
+/* style info window */
+#info-window {
+  flex: 0 0;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  max-width: 400px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+#info-window a{
+  padding: 8px 0;
+  color: orange;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#icon {
+  height: 70px;
+  width: 19%
+  align-self: center;
+}
+
+#info-window h1{
+  color: black;
+}
+
+
 /* only mobile and tablet */
 @media screen and (max-width: 470px) {
 

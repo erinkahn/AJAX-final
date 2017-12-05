@@ -42,6 +42,8 @@ var breweryModule = (function() {
 		queryString += "_ep=/locations";
 		// queryString += '&key=' + API_KEY;
 		queryString += '&region=' + stateSelection;
+		queryString += '&countryIsoCode=US'; //markers show only the US
+		queryString += '&order=breweryName'; // list results in order of brewery name
 
 
 		fetch(BASE_URL + queryString, fetching)
@@ -72,7 +74,7 @@ var breweryModule = (function() {
 		} else { // allBreweries was defined (as an array)
 
 			// go through brewery array
-			for (var i = allBreweries.length - 1; i >= 0; i--) {
+			for (var i = 0; i < allBreweries.length; i++) {
 				var brewery = allBreweries[i];
 
 				var li = document.createElement('li');
@@ -92,6 +94,7 @@ var breweryModule = (function() {
 					lng: parseFloat(brewery.longitude) // array of data
 				}
 
+
 				var breweryDes = brewery.brewery.description;
 				var breweryWeb = brewery.brewery.website;
 				var breweryImg = brewery.brewery.images;
@@ -99,32 +102,28 @@ var breweryModule = (function() {
 				// if brewery description or website isnt there, say nothing about it
 				if (breweryDes && breweryWeb && breweryImg){
 					   markerData.content = 
-					   `<div>${brewery.brewery.name} 
-					   <img src="${breweryImg.icon}"> 
-					   <hr/>${breweryDes} 
-					   <a href="${breweryWeb}"</a> </div>`; 
+					   `<div id="info-window">
+					   <img id="icon" src="${breweryImg.icon}"> 
+					   <h1>${brewery.brewery.name}</h1> 
+					   <hr/>
+					   ${breweryDes}
+					   <br/>
+					   <a href="${breweryWeb}" target="_blank">Visit Website</a>
+					   </div>`; 
+
 					
 				} else {
-					markerData.content = `<div>${brewery.brewery.name} </div>` ; 
+					markerData.content = 
+					`<div id="info-window">
+					<h1>${brewery.brewery.name}</h1></div>`; 
 				}
+				  
 
 				GoogleMapModule.createMarker(markerData);
 
 			}
 		}
 	}
-
-
-
-	// search for beers
-
-	// function searchBeers(evt) {
-	// 	evt.preventDefault();
-	// 	console.log('searching for beer...');
-
-			
-	// }
-
 
 
 	function init(){

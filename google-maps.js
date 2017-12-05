@@ -2,10 +2,17 @@ var GoogleMapModule = (function() {
 	var shared = {};
 
 	var map;
+    var bounds;
 	var infowindow;
-	var startingPoint = {lat: 33.813245, lng: -100.362171}; //lng: -84.362171
-	shared.startingPoint = startingPoint;
-	var markers = [];
+    
+    var zoomDesktop = 4;
+    var zoomMobile = 3;
+	
+    var startingPointDesktop = {lat: 36.8283, lng: -107.5795}; 
+	var startingPointMobile = {lat: 33.813245, lng: -100.362171};
+
+	
+    var markers = [];
 
 	function placeResults(results, status) {
 		if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -37,6 +44,10 @@ var GoogleMapModule = (function() {
 
 		markers.push(marker);
 
+        // map zooms to results
+        bounds.extend(placeLatLng);
+        map.fitBounds(bounds);
+
 	}
 
 	shared.createMarker = createMarker;
@@ -44,6 +55,8 @@ var GoogleMapModule = (function() {
 	
 	// reset the old markers
     function resetMarkers() {
+
+      bounds = new google.maps.LatLngBounds();
 
       for(var i = 0; i < markers.length; i++) {
       	  var marker = markers[i];
@@ -73,9 +86,22 @@ var GoogleMapModule = (function() {
 
 	function initMap() {
 
+        var startingPoint;
+        //check window width - map position for desktop / mobile
+        var zoom; 
+        // check window width - zoom for mobile/desktop
+        if (window.innerWidth <= 470) {
+            zoom = zoomMobile;
+            startingPoint = startingPointMobile;   
+        } else {
+            zoom = zoomDesktop;
+            startingPoint = startingPointDesktop;
+        }
+
+       
 	  map = new google.maps.Map(document.getElementById('map'), {
 	    center: startingPoint,
-	    zoom: 3,
+	    zoom: zoom,
 	    mapTypeControl: false,
 	  });
 
@@ -83,7 +109,11 @@ var GoogleMapModule = (function() {
 	  map.mapTypes.set('styled_map', styledMap);
       map.setMapTypeId('styled_map');
 
+
+
 	  infowindow = new google.maps.InfoWindow();
+
+      resetMarkers();
 
 	}
 
