@@ -189,7 +189,7 @@ var GoogleMapModule = (function() {
         "elementType": "all",
         "stylers": [
             {
-                "color": "#ffa713"
+                "color": "#55c8dd"
             }
         ]
     }

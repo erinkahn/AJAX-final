@@ -5,7 +5,7 @@
 var breweryModule = (function() {
 	var shared = {};
 
-	var BASE_URL = 'http://localhost:9000/brewerydb-proxy/'; //'http://api.brewerydb.com/v2';
+	var BASE_URL = 'http://circuslabs.net/~erin.kahn/quarter3/AJAX/brewery/brewerydb-proxy'; //'http://circuslabs.net/brewerydb-proxy/';  //'http://localhost:9000/brewerydb-proxy/' //'http://api.brewerydb.com/v2';
 	var API_KEY = '5247aa4653fc6c9452275d2055711946';
 	var coordinates = null;
 
